@@ -1,2 +1,19 @@
 ---
 # defaults file for tripleo-backup
+pool_path: /home/stack/.quickstart/pool
+vms_xml_files_path: /home/stack/.config/libvirt/qemu
+vms:
+  - undercloud
+  - compute_0
+  - control_0
+  - ceph_0
+
+oooq_vms_path: /var/oooqvms
+oooq_vms_pool_path: /var/oooqvms/pool
+oooq_tar_path: /root
+oooq_tar_name: tripleo.tar.gz
+
+pool_name: oooq_vms_pool
+networks_name:
+  - external
+  - overcloud

@@ -1,2 +1,10 @@
 ---
-# tasks file for tripleo-backup
+- include: backup.yml
+  when: backup
+  tags:
+    - tripleo-backup
+
+- include: restore.yml
+  when: restore
+  tags:
+    - tripleo-restore

@@ -1,0 +1,37 @@
+---
+- name: check or install required packages
+  yum: name={{ item }} state=latest
+  with_items:
+    - libvirt
+    - qemu-kvm
+
+- name: untar tripleo vms
+  shell: >
+  	tar -xzf {{ oooq_tar_path }}/{{ oooq_tar_name }};
+  	mv var/oooqvms {{ oooq_vms_path }}
+
+- name: destroy network if exist
+  shell: >
+    if virsh net-list | grep external; then
+        virsh net-destroy external
+    fi
+
+- name: destroy network if exist
+  shell: >
+    if virsh net-list | grep overcloud; then
+        virsh net-destroy overcloud
+    fi
+
+- name: create oooq_pool
+  shell: >
+    virsh pool-create {{ oooq_vms_path }}/{{ pool_name }}
+
+- name: create networks
+  shell: >
+    virsh net-create {{ oooq_vms_path }}/{{ item }}
+  with_items: "{{ networks_name }}"
+
+- name: start vms
+  shell: >
+    virsh create {{ oooq_vms_path }}/{{ item }}
+  with_items: "{{ vms }}"
