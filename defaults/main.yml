@@ -17,3 +17,5 @@ pool_name: oooq_vms_pool
 networks_name:
   - external
   - overcloud
+backup: false
+restore: false

@@ -1,0 +1,8 @@
+---
+- name: Restore oooq deployment
+  hosts: virthost
+  tags:
+    - tripleo-restore
+  roles:
+    - { role: ansible-role-tripleo-backup,
+    	restore: true }
