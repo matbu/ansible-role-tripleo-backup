@@ -20,11 +20,12 @@
 
 - name: copy undercloud private key
   copy:
-    src: "{{ local_working_dir }}/{{ undercloud_key }}"
-    dest: "{{ oooq_vms_path }}/undercloud_key"
-    mode: 0600
+    src: "{{ local_working_dir }}/{{ item.file }}"
+    dest: "{{ oooq_vms_path }}/{{ item.file }}"
+    mode: "{{ item.mode }}"
     group: "{{ oooq_user }}"
     owner: "{{ oooq_user }}"
+  with_items: "{{ oooq_files }}"
 
 - name: copy oooq pool
   shell: >
