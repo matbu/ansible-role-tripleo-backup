@@ -8,3 +8,8 @@
   when: restore
   tags:
     - tripleo-restore
+
+- include: sanity.yml
+  when: restore
+  tags:
+    - tripleo-restore-sanity

@@ -6,3 +6,12 @@
   roles:
     - { role: ansible-role-tripleo-backup,
         restore: true }
+
+- name: Sanity checks
+  hosts: undercloud
+  tags:
+    - tripleo-restore-uc-sanity
+  roles:
+    - { role: ansible-role-tripleo-backup,
+        restore: true,
+        services: ["keystone", "glance-api"] }

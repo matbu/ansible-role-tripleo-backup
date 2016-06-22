@@ -1,4 +1,9 @@
 ---
+- name: stop oooq vms
+  shell: >
+    virsh destroy {{ item }}
+  with_items: "{{ vms }}"
+
 - name: remove tripleo vms working dir
   file:
     path: "{{ oooq_vms_path }}"
@@ -38,8 +43,6 @@
     - oooq_pool.xml
     - external.xml
     - overcloud.xml
-
-# TODO: get the undercloud private key
 
 - name: tar oooq_vms
   shell: >

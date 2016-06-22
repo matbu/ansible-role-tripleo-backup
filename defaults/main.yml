@@ -22,3 +22,8 @@ networks_name:
   - overcloud
 backup: false
 restore: false
+
+services:
+  - neutron-server
+  - glance-api
+  - keytsone
