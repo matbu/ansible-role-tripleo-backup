@@ -1,5 +1,6 @@
 ---
 - name: stop oooq vms
+  ignore_errors: true
   shell: >
     virsh destroy {{ item }}
   with_items: "{{ vms }}"
