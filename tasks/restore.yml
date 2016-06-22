@@ -7,8 +7,8 @@
 
 - name: untar tripleo vms
   shell: >
-  	tar -xzf {{ oooq_tar_path }}/{{ oooq_tar_name }};
-  	mv var/oooqvms {{ oooq_vms_path }}
+    tar -xzf {{ oooq_tar_path }}/{{ oooq_tar_name }};
+    mv var/oooqvms {{ oooq_vms_path }}
 
 - name: destroy network if exist
   shell: >

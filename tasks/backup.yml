@@ -1,17 +1,33 @@
 ---
 - name: remove tripleo vms working dir
-  file: path={{ oooq_vms_path }} state=absent
+  file:
+    path: "{{ oooq_vms_path }}"
+    state: absent
+  become: true
 
 - name: make tripleo vms working dir
-  file: path={{ oooq_vms_path }} state=directory
+  file:
+    path: "{{ oooq_vms_path }}"
+    state: directory
+    group: "{{ oooq_user }}"
+    owner: "{{ oooq_user }}"
+  become: true
+
+- name: copy undercloud private key
+  copy:
+    src: "{{ local_working_dir }}/{{ undercloud_key }}"
+    dest: "{{ oooq_vms_path }}/undercloud_key"
+    mode: 0600
+    group: "{{ oooq_user }}"
+    owner: "{{ oooq_user }}"
 
 - name: copy oooq pool
   shell: >
-  	cp -R {{ pool_path }} {{ oooq_vms_path }}/pool
+    cp -R {{ pool_path }} {{ oooq_vms_path }}/pool
 
 - name: copy vms xml desc
   shell: >
-    cp /home/stack/.config/libvirt/qemu/{{ item }} {{ oooq_vms_path }}
+    cp /home/stack/.config/libvirt/qemu/{{ item }}.xml {{ oooq_vms_path }}
   with_items: "{{ vms }}"
 
 - name: copy oooq pool xml desc

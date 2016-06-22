@@ -1,5 +1,8 @@
 ---
 # defaults file for tripleo-backup
+local_working_dir: "{{ lookup('env', 'HOME') }}/.quickstart"
+undercloud_key: id_rsa_undercloud
+oooq_user: stack
 pool_path: /home/stack/.quickstart/pool
 vms_xml_files_path: /home/stack/.config/libvirt/qemu
 vms:
