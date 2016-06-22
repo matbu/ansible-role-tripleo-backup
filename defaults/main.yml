@@ -3,8 +3,8 @@
 local_working_dir: "{{ lookup('env', 'HOME') }}/.quickstart"
 
 oooq_files:
-  - { file: "id_rsa_undercloud", mode: 0600 }
-  - { file: "id_rsa_virt_host", mode: 0600 }
+  - { file: "id_rsa_undercloud", mode: 600 }
+  - { file: "id_rsa_virt_host", mode: 600 }
   - { file: "hosts", mode: 0644 }
   - { file: "ssh.config.ansible", mode: 0644 }
 
