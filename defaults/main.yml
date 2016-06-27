@@ -1,12 +1,12 @@
 ---
 # defaults file for tripleo-backup
 local_working_dir: "{{ lookup('env', 'HOME') }}/.quickstart"
+virthost: "{{ lookup('env', 'VIRTHOST') }}"
+undercloud_ip: ''
 
 oooq_files:
   - { file: "id_rsa_undercloud", mode: 600 }
   - { file: "id_rsa_virt_host", mode: 600 }
-  - { file: "hosts", mode: 0644 }
-  - { file: "ssh.config.ansible", mode: 0644 }
 
 undercloud_key: id_rsa_undercloud
 oooq_user: stack
@@ -17,6 +17,11 @@ vms:
   - compute_0
   - control_0
   - ceph_0
+
+overcloud_nodes:
+  - { type: "compute", name: "overcloud-novacompute-0", ansible_name: "overcloud_novacompute_0" }
+  - { type: "ceph", name: "overcloud-cephstorage-0", ansible_name: "cephstorage" }
+  - { type: "controller", name: "overcloud-controller-0", ansible_name: "controller" }
 
 oooq_vms_path: /var/oooqvms
 oooq_vms_pool_path: /var/oooqvms/pool

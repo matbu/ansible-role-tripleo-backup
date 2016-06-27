@@ -15,3 +15,12 @@
     - { role: ansible-role-tripleo-backup,
         restore: true,
         services: ["keystone", "glance-api"] }
+
+- name: Sanity checks
+  hosts: overcloud
+  tags:
+    - tripleo-restore-uc-sanity
+  roles:
+    - { role: ansible-role-tripleo-backup,
+        restore: true,
+        services: ["keystone", "glance-api", "neutron-server"] }
