@@ -8,6 +8,10 @@ oooq_files:
   - { file: "id_rsa_undercloud", mode: 600 }
   - { file: "id_rsa_virt_host", mode: 600 }
 
+ansible_files:
+    - ssh.config.ansible
+    - hosts
+
 undercloud_key: id_rsa_undercloud
 oooq_user: stack
 pool_path: /home/stack/.quickstart/pool

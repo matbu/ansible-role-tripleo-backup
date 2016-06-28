@@ -35,7 +35,7 @@ undercloud
 {% endif %}
 {% endfor %}
 
-{% for node in overcloud_nodes %}
 [overcloud]
+{% for node in overcloud_nodes %}
 {{ node.name }}
 {% endfor %}

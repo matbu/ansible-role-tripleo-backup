@@ -7,7 +7,7 @@
     - { role: ansible-role-tripleo-backup,
         restore: true }
 
-- name: Sanity checks
+- name: Sanity checks the undercloud services
   hosts: undercloud
   tags:
     - tripleo-restore-uc-sanity
@@ -16,7 +16,7 @@
         restore: true,
         services: ["keystone", "glance-api"] }
 
-- name: Sanity checks
+- name: Sanity checks the overcloud services
   hosts: overcloud
   tags:
     - tripleo-restore-uc-sanity
