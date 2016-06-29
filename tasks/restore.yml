@@ -22,15 +22,11 @@
     mv var/oooqvms/ /var
 
 - name: destroy network if exist
+  with_items: "{{ networks_name }}"
   shell: >
-    if virsh net-list | grep external; then
-        virsh net-destroy external
-    fi
-
-- name: destroy network if exist
-  shell: >
-    if virsh net-list | grep overcloud; then
-        virsh net-destroy overcloud
+    if virsh net-list | grep {{ item }}; then
+        virsh net-destroy {{ item }}
+        virsh net-undefine {{ item }}
     fi
 
 - name: create oooq_pool
