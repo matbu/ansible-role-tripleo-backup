@@ -4,6 +4,13 @@
   tags:
     - tripleo-backup
 
+# Note: the upload task is set in a dedicated tasks file since in a degraded env
+# (slow network connectivity for example) we don't want to fetch and upload
+- include: upload.yml
+  when: upload
+  tags:
+    - tripleo-upload
+
 - include: restore.yml
   when: restore
   tags:
