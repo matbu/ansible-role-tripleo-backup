@@ -61,6 +61,11 @@
     - external.xml
     - overcloud.xml
 
+- name: fix cpu arch
+  shell: >
+    sed -i 's/rhel7\.2/rhel7\.0/' {{ oooq_vms_path }}/{{ item }}
+  with_items: "{{ vms }}"
+
 - name: tar oooq_vms
   shell: >
     tar -cvzf {{ oooq_tar_name }} {{ oooq_vms_path }}

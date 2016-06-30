@@ -5,7 +5,7 @@
     - libvirt
     - qemu-kvm
 
-- name: make tripleo vms working dir
+- name: remove tripleo vms working dir
   file:
     path: "{{ oooq_vms_path }}"
     state: absent
@@ -22,6 +22,7 @@
     mv var/oooqvms/ /var
 
 - name: destroy network if exist
+  ignore_errors: true
   with_items: "{{ networks_name }}"
   shell: >
     if virsh net-list | grep {{ item }}; then
